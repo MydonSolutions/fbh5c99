@@ -9,32 +9,32 @@
 
 typedef struct
 {
-	double data_az_start;
-	long data_barycentric;
-	long data_data_type;
-	double data_fch1;
-	double data_foff;
-	long data_ibeam;
-	long data_machine_id;
-	long data_nbeams;
-	long data_nbits;
-	long data_nchans;
-	long data_nifs;
-	long data_pulsarcentric;
-	char* data_rawdatafile;
-	char* data_source_name;
-	double data_src_dej;
-	double data_src_raj;
-	long data_telescope_id;
-	double data_tsamp;
-	double data_tstart;
-	double data_za_start;
-} FBH5_attributes_t;
+	double az_start;
+	long barycentric;
+	long data_type;
+	double fch1;
+	double foff;
+	long ibeam;
+	long machine_id;
+	long nbeams;
+	long nbits;
+	long nchans;
+	long nifs;
+	long pulsarcentric;
+	char* rawdatafile;
+	char* source_name;
+	double src_dej;
+	double src_raj;
+	long telescope_id;
+	double tsamp;
+	double tstart;
+	double za_start;
+} FBH5_data_attributes_t;
 
 typedef struct
 {
 	hid_t file_id;
-	FBH5_attributes_t attributes;
+	FBH5_data_attributes_t data_attributes;
 	H5_open_dataspace_t DS_data;
 	void *data;
 	H5_open_dataspace_t DS_mask;

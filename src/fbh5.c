@@ -70,158 +70,158 @@ void _FBH5writeAttributes(FBH5_file_t *FBH5file) {
 		FBH5file->DS_data.D_id,
 		"az_start",
 		H5T_NATIVE_DOUBLE,
-		&FBH5file->attributes.data_az_start
+		&FBH5file->data_attributes.az_start
 	);
 	
 	_H5AwriteScalar(
 		FBH5file->DS_data.D_id,
 		"barycentric",
 		H5T_NATIVE_LONG,
-		&FBH5file->attributes.data_barycentric
+		&FBH5file->data_attributes.barycentric
 	);
 	
 	_H5AwriteScalar(
 		FBH5file->DS_data.D_id,
 		"data_type",
 		H5T_NATIVE_LONG,
-		&FBH5file->attributes.data_data_type
+		&FBH5file->data_attributes.data_type
 	);
 	
 	_H5AwriteScalar(
 		FBH5file->DS_data.D_id,
 		"fch1",
 		H5T_NATIVE_DOUBLE,
-		&FBH5file->attributes.data_fch1
+		&FBH5file->data_attributes.fch1
 	);
 	
 	_H5AwriteScalar(
 		FBH5file->DS_data.D_id,
 		"foff",
 		H5T_NATIVE_DOUBLE,
-		&FBH5file->attributes.data_foff
+		&FBH5file->data_attributes.foff
 	);
 	
 	_H5AwriteScalar(
 		FBH5file->DS_data.D_id,
 		"ibeam",
 		H5T_NATIVE_LONG,
-		&FBH5file->attributes.data_ibeam
+		&FBH5file->data_attributes.ibeam
 	);
 	
 	_H5AwriteScalar(
 		FBH5file->DS_data.D_id,
 		"machine_id",
 		H5T_NATIVE_LONG,
-		&FBH5file->attributes.data_machine_id
+		&FBH5file->data_attributes.machine_id
 	);
 	
 	_H5AwriteScalar(
 		FBH5file->DS_data.D_id,
 		"nbeams",
 		H5T_NATIVE_LONG,
-		&FBH5file->attributes.data_nbeams
+		&FBH5file->data_attributes.nbeams
 	);
 	
 	_H5AwriteScalar(
 		FBH5file->DS_data.D_id,
 		"nbits",
 		H5T_NATIVE_LONG,
-		&FBH5file->attributes.data_nbits
+		&FBH5file->data_attributes.nbits
 	);
 	
 	_H5AwriteScalar(
 		FBH5file->DS_data.D_id,
 		"nchans",
 		H5T_NATIVE_LONG,
-		&FBH5file->attributes.data_nchans
+		&FBH5file->data_attributes.nchans
 	);
 	
 	_H5AwriteScalar(
 		FBH5file->DS_data.D_id,
 		"nifs",
 		H5T_NATIVE_LONG,
-		&FBH5file->attributes.data_nifs
+		&FBH5file->data_attributes.nifs
 	);
 	
 	_H5AwriteScalar(
 		FBH5file->DS_data.D_id,
 		"pulsarcentric",
 		H5T_NATIVE_LONG,
-		&FBH5file->attributes.data_pulsarcentric
+		&FBH5file->data_attributes.pulsarcentric
 	);
 	
 	Tstr_id = H5Tcopy(H5T_C_S1);
-	H5Tset_size(Tstr_id, strlen(FBH5file->attributes.data_rawdatafile));
+	H5Tset_size(Tstr_id, strlen(FBH5file->data_attributes.rawdatafile));
 	_H5AwriteScalar(
 		FBH5file->DS_data.D_id,
 		"rawdatafile",
 		Tstr_id,
-		FBH5file->attributes.data_rawdatafile
+		FBH5file->data_attributes.rawdatafile
 	);
 	
 	Tstr_id = H5Tcopy(H5T_C_S1);
-	H5Tset_size(Tstr_id, strlen(FBH5file->attributes.data_source_name));
+	H5Tset_size(Tstr_id, strlen(FBH5file->data_attributes.source_name));
 	_H5AwriteScalar(
 		FBH5file->DS_data.D_id,
 		"source_name",
 		Tstr_id,
-		FBH5file->attributes.data_source_name
+		FBH5file->data_attributes.source_name
 	);
 	
 	_H5AwriteScalar(
 		FBH5file->DS_data.D_id,
 		"src_dej",
 		H5T_NATIVE_DOUBLE,
-		&FBH5file->attributes.data_src_dej
+		&FBH5file->data_attributes.src_dej
 	);
 	
 	_H5AwriteScalar(
 		FBH5file->DS_data.D_id,
 		"src_raj",
 		H5T_NATIVE_DOUBLE,
-		&FBH5file->attributes.data_src_raj
+		&FBH5file->data_attributes.src_raj
 	);
 	
 	_H5AwriteScalar(
 		FBH5file->DS_data.D_id,
 		"telescope_id",
 		H5T_NATIVE_LONG,
-		&FBH5file->attributes.data_telescope_id
+		&FBH5file->data_attributes.telescope_id
 	);
 	
 	_H5AwriteScalar(
 		FBH5file->DS_data.D_id,
 		"tsamp",
 		H5T_NATIVE_DOUBLE,
-		&FBH5file->attributes.data_tsamp
+		&FBH5file->data_attributes.tsamp
 	);
 	
 	_H5AwriteScalar(
 		FBH5file->DS_data.D_id,
 		"tstart",
 		H5T_NATIVE_DOUBLE,
-		&FBH5file->attributes.data_tstart
+		&FBH5file->data_attributes.tstart
 	);
 	
 	_H5AwriteScalar(
 		FBH5file->DS_data.D_id,
 		"za_start",
 		H5T_NATIVE_DOUBLE,
-		&FBH5file->attributes.data_za_start
+		&FBH5file->data_attributes.za_start
 	);
 }
 
 void FBH5open(char* filepath, FBH5_file_t *FBH5file, hid_t Tdata) {
 	FBH5file->file_id = H5Fcreate(filepath, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
 
-	const hsize_t dim3_data_lim[] = {H5S_UNLIMITED, FBH5file->attributes.data_nifs, FBH5file->attributes.data_nchans};
-	const hsize_t dim3_data_chunk[] = {1, FBH5file->attributes.data_nifs, FBH5file->attributes.data_nchans};
+	const hsize_t dim3_data_lim[] = {H5S_UNLIMITED, FBH5file->data_attributes.nifs, FBH5file->data_attributes.nchans};
+	const hsize_t dim3_data_chunk[] = {1, FBH5file->data_attributes.nifs, FBH5file->data_attributes.nchans};
 
 	FBH5file->DS_data.name = "data";
 	H5DSset(3, dim3_data_lim, dim3_data_chunk, &FBH5file->DS_data);
 	H5DSopen(FBH5file->file_id, Tdata, H5Tcopy(Tdata), &FBH5file->DS_data);
 	FBH5file->data = H5DSmalloc(&FBH5file->DS_data);
-	FBH5file->attributes.data_nbits = H5Tget_size(FBH5file->DS_data.Tmem_id)*8;
+	FBH5file->data_attributes.nbits = H5Tget_size(FBH5file->DS_data.Tmem_id)*8;
 
 	FBH5file->DS_mask.name = "mask";
 	H5DSset(3, dim3_data_lim, dim3_data_chunk, &FBH5file->DS_mask);
