@@ -1,5 +1,5 @@
 project('fbh5c99', 'c',
-  version: '0.1.1',
+  version: '0.2.0',
   default_options: [
     'c_std=c99',
     'buildtype=release',
@@ -17,24 +17,24 @@ inc_lst = [
 dep_lst = [
   m_dep,
   dependency('hdf5'),
-  subproject('h5dsc99').get_variable('lib_h5ds_dep'),
+  subproject('h5dsc99').get_variable('lib_h5dsc99_dep'),
 ]
 
 subdir('include')
 subdir('src')
 
-lib_fbh5 = library(
-  'fbh5',
+lib_fbh5c99 = library(
+  'fbh5c99',
   src_lst,
   include_directories: inc_lst,
   dependencies: dep_lst,
   install: true,
 )
 
-lib_fbh5_dep = declare_dependency(
+lib_fbh5c99_dep = declare_dependency(
   include_directories: inc_lst,
   dependencies: dep_lst,
-  link_with: lib_fbh5,
+  link_with: lib_fbh5c99,
 )
 
 subdir('tests')
