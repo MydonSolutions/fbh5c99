@@ -150,23 +150,27 @@ void _FBH5writeAttributes(FBH5_file_t *FBH5file) {
     &FBH5file->data_attributes.pulsarcentric
   );
   
-  Tstr_id = H5Tcopy(H5T_C_S1);
-  H5Tset_size(Tstr_id, strlen(FBH5file->data_attributes.rawdatafile));
-  _H5AwriteScalar(
-    FBH5file->DS_data.D_id,
-    "rawdatafile",
-    Tstr_id,
-    FBH5file->data_attributes.rawdatafile
-  );
+  if (FBH5file->data_attributes.rawdatafile != NULL) {
+    Tstr_id = H5Tcopy(H5T_C_S1);
+    H5Tset_size(Tstr_id, strlen(FBH5file->data_attributes.rawdatafile));
+    _H5AwriteScalar(
+      FBH5file->DS_data.D_id,
+      "rawdatafile",
+      Tstr_id,
+      FBH5file->data_attributes.rawdatafile
+    );
+  }
   
-  Tstr_id = H5Tcopy(H5T_C_S1);
-  H5Tset_size(Tstr_id, strlen(FBH5file->data_attributes.source_name));
-  _H5AwriteScalar(
-    FBH5file->DS_data.D_id,
-    "source_name",
-    Tstr_id,
-    FBH5file->data_attributes.source_name
-  );
+  if (FBH5file->data_attributes.source_name != NULL) {
+    Tstr_id = H5Tcopy(H5T_C_S1);
+    H5Tset_size(Tstr_id, strlen(FBH5file->data_attributes.source_name));
+    _H5AwriteScalar(
+      FBH5file->DS_data.D_id,
+      "source_name",
+      Tstr_id,
+      FBH5file->data_attributes.source_name
+    );
+  }
   
   _H5AwriteScalar(
     FBH5file->DS_data.D_id,

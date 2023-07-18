@@ -15,7 +15,7 @@ int main() {
   fbh5_file.data_attributes.nchans = 16*8;
   fbh5_file.data_attributes.nifs = 1;
   fbh5_file.data_attributes.pulsarcentric = 0;
-  fbh5_file.data_attributes.rawdatafile = "not applicable";
+  fbh5_file.data_attributes.rawdatafile = NULL;
   fbh5_file.data_attributes.source_name = "not applicable";
   fbh5_file.data_attributes.src_dej = 3.14159/2;
   fbh5_file.data_attributes.src_raj = 3.14159/4;
