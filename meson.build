@@ -1,5 +1,5 @@
 project('fbh5c99', 'c',
-  version: '0.1.0',
+  version: '0.1.1',
   default_options: [
     'c_std=c99',
     'buildtype=release',

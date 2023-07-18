@@ -220,15 +220,23 @@ void FBH5open(char* filepath, FBH5_file_t *FBH5file, hid_t Tdata) {
 	FBH5file->DS_data.name = "data";
 	H5DSset(3, dim3_data_lim, dim3_data_chunk, &FBH5file->DS_data);
 	H5DSopen(FBH5file->file_id, Tdata, H5Tcopy(Tdata), &FBH5file->DS_data);
-	FBH5file->data = H5DSmalloc(&FBH5file->DS_data);
 	FBH5file->data_attributes.nbits = H5Tget_size(FBH5file->DS_data.Tmem_id)*8;
 
 	FBH5file->DS_mask.name = "mask";
 	H5DSset(3, dim3_data_lim, dim3_data_chunk, &FBH5file->DS_mask);
 	H5DSopen(FBH5file->file_id, H5Tcopy(H5T_STD_U8LE), H5Tcopy(H5T_STD_U8LE), &FBH5file->DS_mask);
-	FBH5file->mask = (uint8_t*) H5DSmalloc(&FBH5file->DS_mask);
-	
+
 	_FBH5writeAttributes(FBH5file);
+}
+
+void FBH5alloc(FBH5_file_t *FBH5file) {
+	FBH5file->data = H5DSmalloc(&FBH5file->DS_data);
+	FBH5file->mask = (uint8_t*) H5DSmalloc(&FBH5file->DS_mask);
+}
+
+void FBH5clearAlloc(FBH5_file_t *FBH5file) {
+	memset(FBH5file->data, 0, H5DSsize(&FBH5file->DS_data));
+	memset(FBH5file->mask, 0, H5DSsize(&FBH5file->DS_mask));
 }
 
 void FBH5close(FBH5_file_t *FBH5file) {

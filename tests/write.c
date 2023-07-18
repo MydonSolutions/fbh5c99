@@ -24,7 +24,11 @@ int main() {
 	fbh5_file.data_attributes.tstart = 60140.0;
 	fbh5_file.data_attributes.za_start = 0.42;
 
-	FBH5open("test.fbh5", &fbh5_file, H5Tcopy(H5T_NATIVE_FLOAT));
+	// shorthand for FBH5open("test.fbh5", &fbh5_file, H5Tcopy(H5T_NATIVE_FLOAT));
+	FBH5openFloat("test.fbh5", &fbh5_file);
+	// allocate the data and mask pointers, then clear them
+	FBH5alloc(&fbh5_file);
+	FBH5clearAlloc(&fbh5_file);
 
 	FBH5write_dynamic(&fbh5_file);
 	FBH5write_dynamic(&fbh5_file);

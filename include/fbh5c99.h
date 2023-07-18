@@ -43,6 +43,18 @@ typedef struct
 
 void FBH5open(char* filepath, FBH5_file_t *FBH5file, hid_t Tdata);
 
+static inline void FBH5openFloat(char* filepath, FBH5_file_t *FBH5file) {
+	return FBH5open(filepath, FBH5file, H5Tcopy(H5T_NATIVE_FLOAT));
+}
+
+static inline void FBH5openDouble(char* filepath, FBH5_file_t *FBH5file) {
+	return FBH5open(filepath, FBH5file, H5Tcopy(H5T_NATIVE_DOUBLE));
+}
+
+void FBH5alloc(FBH5_file_t *FBH5file);
+
+void FBH5clearAlloc(FBH5_file_t *FBH5file);
+
 void FBH5close(FBH5_file_t *FBH5file);
 
 int FBH5write_dynamic(FBH5_file_t* FBH5file);
