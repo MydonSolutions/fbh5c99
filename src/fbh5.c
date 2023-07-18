@@ -239,17 +239,19 @@ void FBH5clearAlloc(FBH5_file_t *FBH5file) {
 	memset(FBH5file->mask, 0, H5DSsize(&FBH5file->DS_mask));
 }
 
-void FBH5close(FBH5_file_t *FBH5file) {
-	H5DSclose(&FBH5file->DS_data);
+void FBH5free(FBH5_file_t *FBH5file) {
 	if (FBH5file->data != NULL) {
 		free(FBH5file->data);
 	}
 
-	H5DSclose(&FBH5file->DS_mask);
 	if (FBH5file->mask != NULL) {
 		free(FBH5file->mask);
 	}
+}
 
+void FBH5close(FBH5_file_t *FBH5file) {
+	H5DSclose(&FBH5file->DS_data);
+	H5DSclose(&FBH5file->DS_mask);
 	H5Fclose(FBH5file->file_id);
 }
 

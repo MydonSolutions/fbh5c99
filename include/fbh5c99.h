@@ -55,6 +55,8 @@ void FBH5alloc(FBH5_file_t *FBH5file);
 
 void FBH5clearAlloc(FBH5_file_t *FBH5file);
 
+void FBH5free(FBH5_file_t *FBH5file);
+
 void FBH5close(FBH5_file_t *FBH5file);
 
 int FBH5write_dynamic(FBH5_file_t* FBH5file);

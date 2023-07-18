@@ -35,6 +35,7 @@ int main() {
 	FBH5write_dynamic(&fbh5_file);
 
 	FBH5close(&fbh5_file);
+	FBH5free(&fbh5_file);
 
 	return 0;
 }
