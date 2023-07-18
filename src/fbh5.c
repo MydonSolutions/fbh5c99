@@ -6,15 +6,19 @@ herr_t _H5AwriteScalar(
   hid_t H5T_id,
   void* value
 ) {
+  hid_t S_id = H5Screate(H5S_SCALAR);
   hid_t A_id = H5Acreate2(
     dest_id,
     name,
     H5T_id,
-    H5Screate(H5S_SCALAR),
+    S_id,
     H5P_DEFAULT,
     H5P_DEFAULT
   );
-  return H5Awrite(A_id, H5T_id, value);
+  herr_t status = H5Awrite(A_id, H5T_id, value);
+  status += H5Aclose(A_id);
+  status += H5Sclose(S_id);
+  return status;
 }
 
 void _FBH5writeAttributes(FBH5_file_t *FBH5file) {
@@ -47,7 +51,7 @@ void _FBH5writeAttributes(FBH5_file_t *FBH5file) {
   H5Sset_extent_simple(S_id, 1, array_3, NULL);
   hid_t T_id = H5Tcopy(H5T_C_S1);
   H5Tset_size(T_id, H5S_UNLIMITED);
-  hid_t mask_dimlabels = H5Acreate2(
+  hid_t mask_dimlabels_id = H5Acreate2(
     FBH5file->DS_mask.D_id,
     "DIMENSION_LABELS",
     T_id,
@@ -55,8 +59,12 @@ void _FBH5writeAttributes(FBH5_file_t *FBH5file) {
     H5P_DEFAULT,
     H5P_DEFAULT
   );
-  H5Awrite(mask_dimlabels, T_id, data_dimension_labels);
-  hid_t data_dimlabels = H5Acreate2(
+  T_id = H5Tcopy(H5T_C_S1);
+  H5Tset_size(T_id, H5S_UNLIMITED);
+  H5Awrite(mask_dimlabels_id, T_id, data_dimension_labels);
+  H5Aclose(mask_dimlabels_id);
+
+  hid_t data_dimlabels_id = H5Acreate2(
     FBH5file->DS_data.D_id,
     "DIMENSION_LABELS",
     T_id,
@@ -64,7 +72,10 @@ void _FBH5writeAttributes(FBH5_file_t *FBH5file) {
     H5P_DEFAULT,
     H5P_DEFAULT
   );
-  H5Awrite(data_dimlabels, T_id, data_dimension_labels);
+  H5Awrite(data_dimlabels_id, T_id, data_dimension_labels);
+
+  H5Aclose(data_dimlabels_id);
+  H5Sclose(S_id);
   
   _H5AwriteScalar(
     FBH5file->DS_data.D_id,
