@@ -241,10 +241,14 @@ void FBH5clearAlloc(FBH5_file_t *FBH5file) {
 
 void FBH5close(FBH5_file_t *FBH5file) {
 	H5DSclose(&FBH5file->DS_data);
-	free(FBH5file->data);
+	if (FBH5file->data != NULL) {
+		free(FBH5file->data);
+	}
 
 	H5DSclose(&FBH5file->DS_mask);
-	free(FBH5file->mask);
+	if (FBH5file->mask != NULL) {
+		free(FBH5file->mask);
+	}
 
 	H5Fclose(FBH5file->file_id);
 }
