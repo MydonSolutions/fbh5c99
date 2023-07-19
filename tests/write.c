@@ -2,7 +2,7 @@
 
 int main() {
 
-  FBH5_file_t fbh5_file;
+  FBH5_file_t fbh5_file = {0};
 
   fbh5_file.data_attributes.az_start = 0.45;
   fbh5_file.data_attributes.barycentric = 0;
