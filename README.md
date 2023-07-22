@@ -1,3 +1,5 @@
+Consumed by [filterbankc99](https://github.com/MydonSolutions/filterbankc99).
+
 # Filterbank HDF5 C99 Library
 
 Writes filterbank data to an HDF5 file.
